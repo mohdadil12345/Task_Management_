@@ -7,7 +7,7 @@ import { useEffect } from 'react';
 function TaskItem({data}) {
   const dispatch = useDispatch();
 
-  
+  const tasks = useSelector((state) => state.task.tasks.data);
 
   const handletoggle = (id, currentStatus) => {
     const newStatus=!currentStatus
@@ -17,10 +17,11 @@ function TaskItem({data}) {
 
   };
 
-  useEffect(()=>{
-    dispatch(getTASKS())
-  },[])
+  // useEffect(()=>{
+  //   dispatch(getTASKS())
+  // },[])
 
+  console.log("tasksss", tasks)
 
   const handle_Delete = (id) => {
     dispatch(deleteTask(id));
@@ -36,7 +37,7 @@ function TaskItem({data}) {
   return (
    <>
       <ul className="  task-list grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 flex-grow px-20">
-        {data?.map((task, index) => (
+        {tasks?.map((task, index) => (
           <li key={index} className=" rounded-md shadow-md p-4">
             <div className="task-list-data">
              <div className="flex gap-2">

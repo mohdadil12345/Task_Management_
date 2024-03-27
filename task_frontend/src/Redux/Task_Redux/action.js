@@ -65,31 +65,31 @@ export const addtask = (newTask) => async (dispatch) => {
           Authorization: `Bearer ${token}` 
         }
       } );
-      toast.success(response.data.msg, {
-        style: {
-          borderRadius: "50px",
-          background: "#000428",
-          color: "#ffffff",
-          padding: "1rem 1.5rem",
-          fontWeight: "600",
-        },
-      });
     dispatch(addtaskSuccess(response.data));
-    // console.log("res", response.data)
-   
 
+      // toast.success(response.data.msg, {
+      //   style: {
+      //     borderRadius: "50px",
+      //     background: "#000428",
+      //     color: "#ffffff",
+      //     padding: "1rem 1.5rem",
+      //     fontWeight: "600",
+      //   },
+      // });
+      // toast.success(response.data.msg);
+
+    console.log("res", response)
   } catch (error) {
-
-
-    toast.error("something went wrong", {
-      style: {
-        borderRadius: "50px",
-        background: "#000428",
-        color: "#ffffff",
-        padding: "1rem 1.5rem",
-        fontWeight: "600",
-      },
-    });
+    //  toast.error(error.response || "An error occurred", { 
+    //     style: {
+    //       borderRadius: "50px",
+    //       background: "#000428",
+    //       color: "#ffffff",
+    //       padding: "1rem 1.5rem",
+    //       fontWeight: "600",
+    //     },
+    //   });
+    // toast.error(error.response || "An error occurred");
     dispatch(addtaskFailure(error.message));
   }
 };
