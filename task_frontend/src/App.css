@@ -14,7 +14,7 @@
 }
 
 a {
-  color: white;
+  color: rgb(24, 24, 24);
   font-size: larger;
   font-weight: bold;
 }
@@ -22,6 +22,7 @@ a {
 .cont {
   background-color: rgb(255, 255, 255);
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  box-shadow: 1px 1px 7px 0px rgba(0,0,0,0.2);
 }
 
 .main-container-todo {
@@ -30,70 +31,89 @@ a {
     padding: 30px;
     justify-content: center;
 }
-
+.todoContainerMain{
+  flex-grow: 1;
+}
 .todoContainer {
-  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
-  border: 1px solid rgb(205, 205, 205);
   display: grid;
-  grid-template-columns: repeat(3, 30%);
+  grid-template-columns: repeat(auto-fit, 400px);
   gap: 30px;
-  padding: 20px;
-  justify-content: space-between;
+  width: 100%;
   align-items: center;
-  border: 1px solid rgb(81, 86, 133);
-  box-shadow: 1px 1px 4px rgba(45, 36, 36, 0.3);
-  border-radius: 8px;
 
 }
 
 .todoItems {
-  border: 1px solid rgb(218, 218, 218);
   padding: 30px;
   background-color: white;
   color: black;
   box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px,
     rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
   border-radius: 4px;
-  width: 300px;
+  width: 400px;
+  box-shadow: 1px 1px 5px 0px rgba(0,0,0,0.2);
 }
 
 .task-list-data {
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  /* flex-direction: column; */
   gap: 15px;
+  grid-template-columns: 200px 1fr;
+  grid-template-columns: 130px 1fr;
 
 }
-
+.task-list-data h3, .task-list-data p{
+  font-size: 16px;
+}
 .edit_btn {
   padding: 8px 6px;
-  background: rgb(12, 19, 84);
-  color: white;
+  /* background: rgb(39 129 221);
+  
+  color: white; */
+  background: rgb(189 222 255);
+  color: #03172b;
   font-weight: 600;
   border-radius: 4px;
   padding: 10px;
-  width: 80px;
+  /* width: 49%; */
+
 }
 
 .del_btn {
   padding: 8px 6px;
   background: red;
+  background-color: rgb(255, 88, 88);
+  background-color: rgb(255, 73, 73);
+  background: linear-gradient(-45deg, rgb(228, 9, 9) , rgb(130, 13, 13));
+  background: linear-gradient(-45deg, rgb(249 71 71), rgb(255 86 86));
   color: white;
   font-weight: 600;
   border-radius: 4px;
   padding: 10px;
-  width: 80px;
+  /* width: 45%; */
 }
 
 .add-button {
-  background: rgb(12, 19, 84);
+  background: rgb(39 129 221);
   font-weight: 600;
+
 }
 
 p,
 h3 {
   font-size: 20px;
 }
-
+.nav{
+  border-bottom: 1px solid #ededed;
+}
+.nav a:hover{
+  background: rgb(39 129 221);
+  color: white;
+}
+.active{
+  background: rgb(39 129 221);
+  color: white;
+}
 .searc_input {
   padding: 8px;
   margin: 10px 10px;
@@ -169,31 +189,32 @@ h3 {
 
 
 .green {
-  background-color: green;
-  color: white;
+  /* background-color: rgb(57, 146, 57); */
+  background: linear-gradient(-45deg, rgb(6, 187, 84) , rgb(13, 130, 25));
+  background: linear-gradient(45deg, rgb(212 255 231), rgb(116 207 126));
+  color: #00310c;
+  border: 1px solid #b0d7ba !important;
+
   padding: 5px;
   border-radius: 4px;
-  font-weight: bold;
+  font-weight: 600;
 }
 
 .red {
-  background-color: red;
-  color: white;
+  /* background-color: rgb(255, 73, 73);
+  background: linear-gradient(45deg, rgb(186, 18, 18) , rgb(255, 73, 73)); */
+  background: linear-gradient(45deg, rgb(79 37 37), rgb(215 61 61));
+  background: linear-gradient(45deg, rgb(255 228 228), rgb(255 131 131));
+  color: #4d0000;
+  border: 1px solid #ffbebe !important;
+  background-size: 200%;
+  /* color: white; */
   padding: 5px;
   border-radius: 4px;
-  font-weight: bold;
+  font-weight: 600;
 }
 
 
-.home_page {
-    padding: 20px;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-}
-
-.home_page h1 {
-    font-size: 25px;
-    font-weight: 600;
-    color: rgb(12, 12, 61);
+.collapse{
+  visibility:visible !important;
 }

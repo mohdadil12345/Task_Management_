@@ -125,6 +125,30 @@ export const updateTaskFailure = (error) => ({
     }
   };
   
+
+
+
+  export const updatePriority = (taskId, newPriority) => async (dispatch) => {
+    dispatch(updateTaskRequest());
+    
+    try {
+      const token = localStorage.getItem('logintoken');
+      const response = await axios.patch(`https://task-management-i6l7.onrender.com/task/update/${taskId}`, { priority: newPriority }, {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      });
+      console.log("Response from API:", response.data); 
+      dispatch(updateTaskSuccess(taskId, newPriority));
+      console.log("Updated task:", taskId, newPriority);
+      console.log('priority')
+    } catch (error) {
+      console.log('priority')
+      dispatch(updateTaskFailure(error.msg));
+    }
+  };
+
+
   
   //  delete
 

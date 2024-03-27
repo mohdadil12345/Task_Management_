@@ -6,13 +6,10 @@ import toast from "react-hot-toast";
 
 const Task = () => {
   const dispatch = useDispatch();
-  // const data = useSelector((store) => {
-  //   return store.task.tasks;
-  // });
+
   const tasks = useSelector((state) => state.task.tasks.data);
 
-  const [filteredTasks, setFilteredTasks] = useState([]);
-  
+  const [filteredTasks, setFilteredTasks] = useState("");
 
   const [taskData, settaskData] = useState({
     title: "",
@@ -29,10 +26,7 @@ const Task = () => {
   };
   const submitTaskData = () => {
     dispatch(addtask(taskData));
-
-    
-  
-
+    console.log(taskData);
     settaskData({
       title: "",
       description: "",
@@ -48,41 +42,30 @@ const Task = () => {
   }, [taskData]);
 
   const filterByCategory = (e) => {
-    const priority = e.target.value;
-    console.log(priority);
-  
-    let fil_Tasks = [];
-  
-    if (priority === "") {
-     
-    } else {
-      fil_Tasks = tasks.filter((task) => task.priority === priority);
-    }
-  
-    console.log("filtertasks", fil_Tasks);
-    setFilteredTasks(fil_Tasks);
+
+     setFilteredTasks( e.target.value)
+    
   };
-  
-
-
 
   return (
     <>
-    
-      <input type="text" placeholder="Filter By Status" className="searc_input" />
-      <select
-        onChange={(e) => filterByCategory(e)}
-        className="select_tag"
-        name="category"
-      >
-        <option value="">Select By Priority</option>
-        <option value="urgent">Urgent</option>
-        <option value="medium">Medium</option>
-        <option value="low">Low</option>
-      </select>
-
-
-
+      <div className="flex justify-content-center align-items-center">
+        <input
+          type="text"
+          placeholder="Filter By Status"
+          className="searc_input priority p-2 border border-gray-300 rounded"
+        />
+        <select
+          onChange={(e) => filterByCategory(e)}
+          className="select_tag priority p-2 border border-gray-300 rounded"
+          name="category"
+        >
+          <option value="">Select By Priority</option>
+          <option value="urgent">Urgent</option>
+          <option value="medium">Medium</option>
+          <option value="low">Low</option>
+        </select>
+      </div>
 
       <div className="main-container-todo ">
         <div className=" cont w-[25%] todo-container max-w-lg p-5 rounded-lg shadow-md">
@@ -129,8 +112,8 @@ const Task = () => {
             </button>
           </div>
         </div>
-        <div>
-          <TaskItem data={tasks} />
+        <div className="todoContainerMain">
+          <TaskItem data={tasks} filteredTasks={filteredTasks}/>
         </div>
       </div>
     </>
