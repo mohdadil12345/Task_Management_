@@ -1,12 +1,14 @@
 import { Toaster } from 'react-hot-toast';
 import './App.css';
-import Task from './Components/Task';
+import Navbar from './Components/Navbar';
+import AllRoutes from './Components/AllRoutes';
 
 
 function App() {
   return (
     <div >
-      <Task/>
+      <Navbar/>
+      <AllRoutes/>
   <Toaster/>
     </div>
   );

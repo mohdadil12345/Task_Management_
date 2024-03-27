@@ -10,7 +10,6 @@ function TaskItem({data}) {
   
 
   const handletoggle = (id, currentStatus) => {
-    // Toggle the status
     const newStatus=!currentStatus
     dispatch(updateTask(id, newStatus)); 
     

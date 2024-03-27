@@ -1,7 +1,6 @@
 
 
 import React, { useEffect, useState } from "react";
-// import "../Components/Task.css";
 import { addtask, getTASKS } from "../Redux/Task_Redux/action";
 import { useDispatch, useSelector } from "react-redux";
 import TaskItem from "./TaskItem";
@@ -28,18 +27,11 @@ const Task = () => {
   };
   const submitTaskData = () => {
     dispatch(addtask(taskData));
-
+    dispatch(getTASKS(taskData));
     console.log(taskData);
   };
 
   console.log("dataa", data)
-
-
-
-useEffect(() => {
-  dispatch(getTASKS());
-}, [taskData])
-
 
 
 return (

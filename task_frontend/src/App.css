@@ -1,0 +1,19 @@
+
+
+*{
+    padding: 0px;
+    margin: 0px;
+    box-sizing: border-box;
+
+}
+
+.navbar{
+    background-color: blue;
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 30px;
+}
+
+a{
+    color: white;
+}

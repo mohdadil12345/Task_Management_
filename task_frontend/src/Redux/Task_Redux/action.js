@@ -113,29 +113,12 @@ export const updateTaskFailure = (error) => ({
           Authorization: `Bearer ${token}`
         }
       });
-      console.log("Response from API:", response.data); // Log the response data
-      dispatch(updateTaskSuccess(taskId, newStatus)); // Dispatching success action with id and new status
+      console.log("Response from API:", response.data); 
+      dispatch(updateTaskSuccess(taskId, newStatus));
       console.log("Updated task:", taskId, newStatus);
     } catch (error) {
       dispatch(updateTaskFailure(error.msg));
     }
   };
   
-  
-//   export const updateTask = (taskId,  newStatus ) => async (dispatch) => {
-//     dispatch(updateTaskRequest());
-  
-//     try {
-//       const token = localStorage.getItem('logintoken');
-//       const response = await axios.patch(`https://task-management-i6l7.onrender.com/task/update/${taskId}`,  newStatus , {
-//         headers: {
-//           Authorization: `Bearer ${token}`
-//         }
-//       });
-//       dispatch(updateTaskSuccess(taskId, newStatus)); 
-//       console.log("Updated task:", response.data);
-//     } catch (error) {
-//       dispatch(updateTaskFailure(error.message));
-//     }
-//   };
   
