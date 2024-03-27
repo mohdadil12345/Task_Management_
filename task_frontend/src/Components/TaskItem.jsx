@@ -16,9 +16,9 @@ function TaskItem({ data }) {
     toast.success(newStatus ? "Task Completed" : "Task Marked Pending");
   };
 
-  // useEffect(()=>{
-  //   dispatch(getTASKS())
-  // },[])
+  useEffect(()=>{
+    dispatch(getTASKS())
+  },[data])
 
   console.log("tasksss", tasks);
 
@@ -29,9 +29,9 @@ function TaskItem({ data }) {
   };
 
   return (
-    <>
+   
       <div className=" todoContainer">
-        {data?.map((task, index) => (
+        {tasks?.map((task, index) => (
           <div key={index} className=" todoItems">
             <div className="task-list-data">
               <div className="flex gap-8">
@@ -39,7 +39,7 @@ function TaskItem({ data }) {
                 <h3 className="task-text">{task.title}</h3>
               </div>
               <div className="flex gap-8">
-                <strong>Description : </strong>
+               <strong>Description : </strong>
                 <p className="description">{task.description}</p>
               </div>
               <div className="flex gap-8">
@@ -50,7 +50,7 @@ function TaskItem({ data }) {
                 <strong>Status : </strong>
                 <p
                   onClick={() => handletoggle(task._id, task.status)}
-                  className="task-priority"
+                  className={task.status ? 'green' : 'red'}
                 >
                   {task.status ? "Completed" : "Pending"}
                 </p>
@@ -73,7 +73,7 @@ function TaskItem({ data }) {
           </div>
         ))}
       </div>
-    </>
+ 
   );
 }
 

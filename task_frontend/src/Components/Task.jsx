@@ -6,9 +6,10 @@ import toast from "react-hot-toast";
 
 const Task = () => {
   const dispatch = useDispatch();
-  const data = useSelector((store) => {
-    return store.task.tasks.data;
-  });
+  // const data = useSelector((store) => {
+  //   return store.task.tasks;
+  // });
+  const tasks = useSelector((state) => state.task.tasks.data);
 
   const [filteredTasks, setFilteredTasks] = useState([]);
   
@@ -37,7 +38,7 @@ const Task = () => {
     });
   };
 
-  console.log("dataa", data);
+  console.log("dataa", tasks);
 
   useEffect(() => {
     dispatch(getTASKS());
@@ -50,9 +51,9 @@ const Task = () => {
     let fil_Tasks = [];
   
     if (priority === "") {
-      fil_Tasks = data;
+     
     } else {
-      fil_Tasks = data.filter((task) => task.priority === priority);
+      fil_Tasks = tasks.filter((task) => task.priority === priority);
     }
   
     console.log("filtertasks", fil_Tasks);
@@ -80,7 +81,7 @@ const Task = () => {
 
 
 
-      <div className="main-container-todo p-10 flex justify-evenly">
+      <div className="main-container-todo ">
         <div className=" cont w-[25%] todo-container max-w-lg p-5 rounded-lg shadow-md">
           <h2 className="todo text-center text-2xl">Todo List</h2>
           <div className="data flex justify-between">
@@ -126,7 +127,7 @@ const Task = () => {
           </div>
         </div>
         <div>
-          <TaskItem data={filteredTasks} />
+          <TaskItem data={tasks} />
         </div>
       </div>
     </>

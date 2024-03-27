@@ -9,7 +9,9 @@ const SignupForm = () => {
   const [username, setUsername] = useState("");
   const [fullName, setFullName] = useState("");
   const dispatch = useDispatch();
-//   const navigate = useNavigate();
+
+   const nav = useNavigate()
+  
 
   const handleSignup = () => {
     const userData = { email, password,fullName,username };
@@ -17,7 +19,7 @@ const SignupForm = () => {
     dispatch(signupUser(userData, ));
   };
   const tologin = () => {
-    // navigate("/");
+    nav("/login");
   };
 
   return (
@@ -48,7 +50,7 @@ const SignupForm = () => {
           onChange={(e) => setFullName(e.target.value)}
         />
           <button className="signup_btn" onClick={handleSignup}>Register</button>
-          <span onClick={tologin} className="text-[#83858B]">
+          <span  onClick={tologin} className="text-[#83858B] cursor-pointer">
             already have an account
           </span>
         </div>

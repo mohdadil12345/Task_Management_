@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { signinUser } from "../Redux/Auth_Redux/action";
 import { getTASKS } from "../Redux/Task_Redux/action";
+import { useNavigate } from "react-router-dom";
 
 const LoginForm = () => {
   const [email, setEmail] = useState("");
@@ -11,6 +12,8 @@ const LoginForm = () => {
     return store.task
   })
 
+  const nav = useNavigate()
+
 
   const handleLogin = () => {
     const userData = { email, password };
@@ -19,6 +22,7 @@ const LoginForm = () => {
     return
   };
   const tosignup=()=>{
+    nav("/signup")
   }
   useEffect(() => {
     dispatch(getTASKS())
@@ -42,7 +46,7 @@ const LoginForm = () => {
             onChange={(e) => setPassword(e.target.value)}
           />
           <button className="signup_btn" onClick={handleLogin}>Login</button>
-          <span onClick={tosignup} className="text-[#83858B]" >New user</span>
+          <span onClick={tosignup} className="text-[#83858B]" >New user Signup</span>
         </div>
       </div>
   );
