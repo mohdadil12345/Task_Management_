@@ -60,37 +60,36 @@ export const addtask = (newTask) => async (dispatch) => {
 
   try {
     const token = localStorage.getItem('logintoken'); 
-    const response = await axios.post("https://task-management-i6l7.onrender.com/task/add",newTask, {
-        headers: {
-          Authorization: `Bearer ${token}` 
-        }
-      } );
+    const response = await axios.post("https://task-management-i6l7.onrender.com/task/add", newTask, {
+      headers: {
+        Authorization: `Bearer ${token}` 
+      }
+    });
+
+    toast.success(response.data.msg, {
+      style: {
+        borderRadius: "50px",
+        background: "#000428",
+        color: "#ffffff",
+        padding: "1rem 1.5rem",
+        fontWeight: "600",
+      },
+    });
+
     dispatch(addtaskSuccess(response.data));
-
-      // toast.success(response.data.msg, {
-      //   style: {
-      //     borderRadius: "50px",
-      //     background: "#000428",
-      //     color: "#ffffff",
-      //     padding: "1rem 1.5rem",
-      //     fontWeight: "600",
-      //   },
-      // });
-      // toast.success(response.data.msg);
-
-    console.log("res", response)
+   
   } catch (error) {
-    // toast.error("fill complete data first", {
-    //   style: {
-    //     borderRadius: "50px",
-    //     background: "#000428",
-    //     color: "#ffffff",
-    //     padding: "1rem 1.5rem",
-    //     fontWeight: "600",
-    //   },
-    // });
-    // toast.error(error.response || "An error occurred");
-    dispatch(addtaskFailure(error.message));
+
+    dispatch(addtaskFailure(error));
+    toast.error(error.response?.data?.msg, {
+      style: {
+        borderRadius: "50px",
+        background: "#000428",
+        color: "#ffffff",
+        padding: "1rem 1.5rem",
+        fontWeight: "600",
+      },
+    });
   }
 };
 
