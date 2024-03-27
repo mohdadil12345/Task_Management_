@@ -1,5 +1,5 @@
 import React from 'react'
-import { getTASKS, updateTask } from '../Redux/Task_Redux/action'
+import { deleteTask, getTASKS, updateTask } from '../Redux/Task_Redux/action'
 import toast from 'react-hot-toast'
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
@@ -20,7 +20,17 @@ function TaskItem({data}) {
   useEffect(()=>{
     dispatch(getTASKS())
   },[])
+
+
+  const handle_Delete = (id) => {
+    dispatch(deleteTask(id));
+    toast.success('Task deleted successfully');
+    dispatch(getTASKS());
+  };
   
+
+
+
 
 
   return (
@@ -50,7 +60,7 @@ function TaskItem({data}) {
          
          
          <div className='flex justify-center gap-5'>
-          <button className='border border-red-500 rounded-full p-1'>✂</button><button  className='border border-red-500 rounded-full p-1'>🖊</button>
+          <button onClick={() => handle_Delete(task._id)} className='border border-red-500 rounded-full p-1'>DELETE</button><button  className='border border-red-500 rounded-full p-1'>🖊</button>
          </div>
             
             </div>

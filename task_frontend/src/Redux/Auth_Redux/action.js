@@ -79,17 +79,17 @@ export const signupUser = (userData) => async (dispatch) => {
       });
  
   } catch (error) {
-    dispatch(signinError(error.response.data.msg || "An error occurred"));
+    dispatch(signinError(error.response.msg || "An error occurred"));
     
-    toast.error(error.response.data.msg || "An error occurred", {
-        style: {
-            borderRadius: "50px",
-            background: "#000428",
-            color: "#ffffff",
-            padding: "1rem 1.5rem",
-            fontWeight: "600",
-        },
-    });
+    // toast.error(error.response.msg || "An error occurred", {
+    //     style: {
+    //         borderRadius: "50px",
+    //         background: "#000428",
+    //         color: "#ffffff",
+    //         padding: "1rem 1.5rem",
+    //         fontWeight: "600",
+    //     },
+    // });
 }
 };
 

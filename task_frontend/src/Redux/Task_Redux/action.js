@@ -1,6 +1,6 @@
 import axios from "axios";
 
-import { ADDTASK_FAILURE, ADDTASK_REQUEST, ADDTASK_SUCCESS, GET_TASK_FAILURE, GET_TASK_REQUEST, GET_TASK_SUCCESS, UPDATE_TASK_FAILURE, UPDATE_TASK_SUCCESS } from "../ActionTypes";
+import { ADDTASK_FAILURE, ADDTASK_REQUEST, ADDTASK_SUCCESS, DELETE_TASK_FAILURE, DELETE_TASK_REQUEST, DELETE_TASK_SUCCESS, GET_TASK_FAILURE, GET_TASK_REQUEST, GET_TASK_SUCCESS, UPDATE_TASK_FAILURE, UPDATE_TASK_SUCCESS } from "../ActionTypes";
 import toast from "react-hot-toast";
 
 export const gettaskRequest = () => ({
@@ -22,11 +22,11 @@ export const getTASKS = () => async (dispatch) => {
   dispatch(gettaskRequest());
 
   try {
-    const token = localStorage.getItem('logintoken'); // Assuming your authorization token key is 'authToken'
+    const token = localStorage.getItem('logintoken');
     
     const response = await axios.get("https://task-management-i6l7.onrender.com/task", {
       headers: {
-        Authorization: `Bearer ${token}` // Assuming it's a Bearer token
+        Authorization: `Bearer ${token}` 
       }
     });
     console.log(response)
@@ -38,8 +38,8 @@ export const getTASKS = () => async (dispatch) => {
 
 
 
+// addd task
 
-  
 
 export const addtaskRequest = () => ({
   type: ADDTASK_REQUEST,
@@ -75,22 +75,27 @@ export const addtask = (newTask) => async (dispatch) => {
         },
       });
     dispatch(addtaskSuccess(response.data));
+    // console.log("res", response.data)
    
 
-    console.log("res", response)
   } catch (error) {
-    toast.error(error.response.data.msg || "An error occurred", {
-        style: {
-            borderRadius: "50px",
-            background: "#000428",
-            color: "#ffffff",
-            padding: "1rem 1.5rem",
-            fontWeight: "600",
-        },
+
+
+    toast.error("something went wrong", {
+      style: {
+        borderRadius: "50px",
+        background: "#000428",
+        color: "#ffffff",
+        padding: "1rem 1.5rem",
+        fontWeight: "600",
+      },
     });
     dispatch(addtaskFailure(error.message));
   }
 };
+
+
+//  update
 
 export const updateTaskFailure = (error) => ({
     type: UPDATE_TASK_FAILURE,
@@ -122,3 +127,37 @@ export const updateTaskFailure = (error) => ({
   };
   
   
+  //  delete
+
+
+  export const deleteTaskRequest = () => ({
+    type: DELETE_TASK_REQUEST,
+  });
+
+  export const deleteTaskSuccess = (taskId) => ({
+    type: DELETE_TASK_SUCCESS,
+    payload: taskId,
+  });
+
+  export const deleteTaskFailure = (error) => ({
+    type: DELETE_TASK_FAILURE,
+    payload: error,
+  });
+  
+
+  export const deleteTask = (taskId) => async (dispatch) => {
+    dispatch(deleteTaskRequest());
+  
+    try {
+      const token = localStorage.getItem('logintoken');
+      await axios.delete(`https://task-management-i6l7.onrender.com/task/delete/${taskId}`, {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      });
+      dispatch(deleteTaskSuccess(taskId));
+      toast.success('Task deleted successfully');
+    } catch (error) {
+      dispatch(deleteTaskFailure(error.message));
+    }
+  };

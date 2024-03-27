@@ -27,11 +27,23 @@ const Task = () => {
   };
   const submitTaskData = () => {
     dispatch(addtask(taskData));
-    dispatch(getTASKS(taskData));
     console.log(taskData);
+    settaskData({
+      title: "",
+      description: "",
+      status:false,
+      priority: "",
+    })
   };
 
   console.log("dataa", data)
+
+
+
+useEffect(() => {
+  dispatch(getTASKS());
+}, [taskData])
+
 
 
 return (
@@ -59,7 +71,7 @@ return (
             value={taskData.priority}
             onChange={handleChange}
           >
-            <option value="">Priority</option>
+            <option value="">Select Priority</option>
             <option value="urgent">Urgent</option>
             <option value="medium">Medium</option>
             <option value="low">Low</option>
