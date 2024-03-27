@@ -80,15 +80,15 @@ export const addtask = (newTask) => async (dispatch) => {
 
     console.log("res", response)
   } catch (error) {
-    //  toast.error(error.response || "An error occurred", { 
-    //     style: {
-    //       borderRadius: "50px",
-    //       background: "#000428",
-    //       color: "#ffffff",
-    //       padding: "1rem 1.5rem",
-    //       fontWeight: "600",
-    //     },
-    //   });
+    // toast.error("fill complete data first", {
+    //   style: {
+    //     borderRadius: "50px",
+    //     background: "#000428",
+    //     color: "#ffffff",
+    //     padding: "1rem 1.5rem",
+    //     fontWeight: "600",
+    //   },
+    // });
     // toast.error(error.response || "An error occurred");
     dispatch(addtaskFailure(error.message));
   }

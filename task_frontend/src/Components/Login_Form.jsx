@@ -19,7 +19,7 @@ const LoginForm = () => {
     const userData = { email, password };
     dispatch(signinUser(userData,))
     console.log(userData)
-    return
+    nav("/task")
   };
   const tosignup=()=>{
     nav("/signup")
@@ -46,7 +46,7 @@ const LoginForm = () => {
             onChange={(e) => setPassword(e.target.value)}
           />
           <button className="signup_btn" onClick={handleLogin}>Login</button>
-          <span onClick={tosignup} className="text-[#83858B]" >New user Signup</span>
+          <span onClick={tosignup} className="text-[#030710] cursor-pointer" >New user Signup</span>
         </div>
       </div>
   );

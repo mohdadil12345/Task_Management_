@@ -50,7 +50,7 @@ const SignupForm = () => {
           onChange={(e) => setFullName(e.target.value)}
         />
           <button className="signup_btn" onClick={handleSignup}>Register</button>
-          <span  onClick={tologin} className="text-[#83858B] cursor-pointer">
+          <span  onClick={tologin} className="cursor-pointer">
             already have an account
           </span>
         </div>

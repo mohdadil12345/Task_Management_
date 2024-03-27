@@ -30,6 +30,9 @@ const Task = () => {
   const submitTaskData = () => {
     dispatch(addtask(taskData));
     console.log(taskData);
+    
+  
+
     settaskData({
       title: "",
       description: "",
