@@ -21,10 +21,9 @@ const SignupForm = () => {
   };
 
   return (
-    <div className="bluish h-[100vh] p-20">
-      <div className="bg-white border p-10 flex flex-col gap-5 w-[30%] m-auto rounded-2xl">
+    <div className="Form_contain">
         <h2 className=" text-center text-2xl font-bold ">Signup</h2>
-        <div className="flex flex-col gap-5">
+        <div className="form3">
           <input
             type="email"
             placeholder="Email"
@@ -48,13 +47,12 @@ const SignupForm = () => {
           value={fullName}
           onChange={(e) => setFullName(e.target.value)}
         />
-          <button onClick={handleSignup}>Register</button>
+          <button className="signup_btn" onClick={handleSignup}>Register</button>
           <span onClick={tologin} className="text-[#83858B]">
             already have an account
           </span>
         </div>
       </div>
-    </div>
   );
 };
 

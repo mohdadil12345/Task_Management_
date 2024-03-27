@@ -26,10 +26,9 @@ const LoginForm = () => {
   
   console.log(data)
   return (
-    <div className="bluish  h-[100vh] p-20">
-      <div className="bg-white border p-10 flex flex-col gap-5 w-[30%] m-auto rounded-2xl">
+      <div className="Form_contain">
         <h2 className="text-center text-2xl font-bold">Login</h2>
-        <div className="flex flex-col gap-5">
+        <div className="form3 login_form">
           <input
             type="email"
             placeholder="Email"
@@ -42,11 +41,10 @@ const LoginForm = () => {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
-          <button onClick={handleLogin}>Login</button>
+          <button className="signup_btn" onClick={handleLogin}>Login</button>
           <span onClick={tosignup} className="text-[#83858B]" >New user</span>
         </div>
       </div>
-    </div>
   );
 };
 
