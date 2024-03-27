@@ -1,5 +1,3 @@
-
-
 import React, { useEffect, useState } from "react";
 import { addtask, getTASKS } from "../Redux/Task_Redux/action";
 import { useDispatch, useSelector } from "react-redux";
@@ -7,15 +5,18 @@ import TaskItem from "./TaskItem";
 import toast from "react-hot-toast";
 
 const Task = () => {
-    const dispatch = useDispatch();
-    const  data=useSelector((store)=>{
-        return store.task.tasks.data
-      })
+  const dispatch = useDispatch();
+  const data = useSelector((store) => {
+    return store.task.tasks.data;
+  });
+
+  const [filteredTasks, setFilteredTasks] = useState([]);
+  
 
   const [taskData, settaskData] = useState({
     title: "",
     description: "",
-    status:false,
+    status: false,
     priority: "",
   });
   const handleChange = (e) => {
@@ -31,75 +32,105 @@ const Task = () => {
     settaskData({
       title: "",
       description: "",
-      status:false,
+      status: false,
       priority: "",
-    })
+    });
   };
 
-  console.log("dataa", data)
+  console.log("dataa", data);
+
+  useEffect(() => {
+    dispatch(getTASKS());
+  }, [taskData]);
+
+  const filterByCategory = (e) => {
+    const priority = e.target.value;
+    console.log(priority);
+  
+    let fil_Tasks = [];
+  
+    if (priority === "") {
+      fil_Tasks = data;
+    } else {
+      fil_Tasks = data.filter((task) => task.priority === priority);
+    }
+  
+    console.log("filtertasks", fil_Tasks);
+    setFilteredTasks(fil_Tasks);
+  };
+  
 
 
 
-useEffect(() => {
-  dispatch(getTASKS());
-}, [taskData])
+  return (
+    <>
+    
+      <input type="text" placeholder="Filter By Status" className="searc_input" />
+      <select
+        onChange={(e) => filterByCategory(e)}
+        className="select_tag"
+        name="category"
+      >
+        <option value="">Select By Priority</option>
+        <option value="urgent">Urgent</option>
+        <option value="medium">Medium</option>
+        <option value="low">Low</option>
+      </select>
 
 
 
-return (
-  <>
-    <div className="main-container-todo p-10 flex  bg-blue-100 min-h-screen">
-      <div className=" w-[25%] todo-container max-w-lg p-5 bg-gray-900 rounded-lg shadow-md">
-        <h2 className="todo text-center text-2xl">Todo List</h2>
-        <div className="data flex justify-between">
-          <p className="task-count"></p>
-          <p className="completed-count"></p>
+
+      <div className="main-container-todo p-10 flex justify-evenly">
+        <div className=" cont w-[25%] todo-container max-w-lg p-5 rounded-lg shadow-md">
+          <h2 className="todo text-center text-2xl">Todo List</h2>
+          <div className="data flex justify-between">
+            <p className="task-count"></p>
+            <p className="completed-count"></p>
+          </div>
+
+          <div className="input-container flex flex-col gap-2">
+            <input
+              type="text"
+              name="title"
+              value={taskData.title}
+              onChange={handleChange}
+              placeholder="Add a new task"
+              className="task-input flex-grow p-2 border border-gray-300 rounded text-black"
+            />
+            <select
+              className="priority p-2 border border-gray-300 rounded"
+              name="priority"
+              value={taskData.priority}
+              onChange={handleChange}
+            >
+              <option value="">Select Priority</option>
+              <option value="urgent">Urgent</option>
+              <option value="medium">Medium</option>
+              <option value="low">Low</option>
+            </select>
+            <textarea
+              value={taskData.description}
+              onChange={handleChange}
+              name="description"
+              id=""
+              cols="30"
+              rows="10"
+              className="desc p-2 border border-gray-300 rounded"
+            ></textarea>
+            <button
+              onClick={submitTaskData}
+              className="add-button text-white p-2 rounded cursor-pointer"
+            >
+              Add Task
+            </button>
+          </div>
         </div>
-
-        <div className="input-container flex flex-col gap-2">
-          <input
-            type="text"
-            name="title"
-            value={taskData.title}
-            onChange={handleChange}
-            placeholder="Add a new task"
-            className="task-input flex-grow p-2 border border-gray-300 rounded outline-none text-black"
-          />
-          <select
-            className="priority p-2 border border-gray-300 rounded"
-            name="priority"
-            value={taskData.priority}
-            onChange={handleChange}
-          >
-            <option value="">Select Priority</option>
-            <option value="urgent">Urgent</option>
-            <option value="medium">Medium</option>
-            <option value="low">Low</option>
-          </select>
-          <textarea
-            value={taskData.description}
-            onChange={handleChange}
-            name="description"
-            id=""
-            cols="30"
-            rows="10"
-            className="desc p-2 border border-gray-300 rounded"
-          ></textarea>
-          <button
-            onClick={submitTaskData}
-            className="add-button bg-green-700 text-white p-2 rounded cursor-pointer"
-          >
-            Add Task
-          </button>
+        <div>
+          <TaskItem data={filteredTasks} />
         </div>
       </div>
-      <div>
-    <TaskItem data={data}/>
-      </div>
-   
-    </div>
-  </>
-);
+    </>
+  );
 };
 
 export default Task;
