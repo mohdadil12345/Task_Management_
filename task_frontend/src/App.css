@@ -183,3 +183,17 @@ h3 {
   border-radius: 4px;
   font-weight: bold;
 }
+
+
+.home_page {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.home_page h1 {
+    font-size: 25px;
+    font-weight: 600;
+    color: rgb(12, 12, 61);
+}

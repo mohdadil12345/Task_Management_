@@ -6,6 +6,9 @@ import SignupForm from './Signup_Form'
 import Task from './Task'
 
 function AllRoutes() {
+
+const access = localStorage.getItem("logintoken")
+
   return (
     <div>
         <Routes>
