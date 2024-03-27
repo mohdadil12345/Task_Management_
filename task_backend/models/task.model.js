@@ -20,6 +20,8 @@ const taskSchema = new mongoose.Schema({
     },
     priority: {
         type: String,
+        required: true
+
       
        
     },
