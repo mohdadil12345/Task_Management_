@@ -1,13 +1,20 @@
-import React, { useEffect, useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import  { useEffect, useState } from 'react';
+
+
+import React from "react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 
 function Navbar() {
+  const location = useLocation();
   const [access, setAccess] = useState(localStorage.getItem("logintoken"));
   const navigate = useNavigate();
+
 
   useEffect(() => {
     setAccess(localStorage.getItem("logintoken"));
   }, []); 
+
+
   const handleTaskClick = () => {
     if (access) {
       navigate("/task");
@@ -22,17 +29,28 @@ function Navbar() {
     navigate("/");
   };
 
+
+
   return (
-    <div className="navbar">
-      <Link to={"/"}>Home</Link>
-      <span className='text-white font-bold' onClick={handleTaskClick}>Task</span>
+    <nav className="nav p-md-4">
+      <Link className={`nav-link ${location.pathname === '/' ? 'active' : ''}`} to="/">Home</Link>
+
+      <span onClick={handleTaskClick} className={` cursor-pointer   nav-link ${location.pathname === '/task' ? 'active' : ''}`} to="/task">Task</span>
+
+
       {access ? (
-        <span className='text-white' onClick={logout}>Logout</span>
+           <span onClick={logout} className={`nav-link ${location.pathname === '/signup' ? 'active' : ''}`} to="/signup">Logout</span>
+
       ) : (
-        <Link to={"/login"}>Login</Link>
+        <Link className={`nav-link ${location.pathname === '/login' ? 'active' : ''}`} to="/login">Login</Link>
+
       )}
-    </div>
+
+
+
+    </nav>
   );
 }
 
 export default Navbar;
+
