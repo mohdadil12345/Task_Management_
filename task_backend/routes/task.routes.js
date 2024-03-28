@@ -23,7 +23,7 @@ taskRouter.post("/add", auth, async (req, res) => {
 
 taskRouter.get("/", auth, async (req, res) => {
     const { page } = req.query;
-    const limit = 5;
+    const limit = 10;
     const skip = (page - 1) * limit;
     const { userID } = req.body;
 
