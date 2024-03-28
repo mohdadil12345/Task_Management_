@@ -39,6 +39,9 @@ function TaskItem({ data, filteredTasks }) {
     dispatch(deleteTask(id));
     toast.success("Task deleted successfully");
     dispatch(getTASKS());
+    setTimeout(() => {
+      window.location.reload();
+    }, 2000);
   };
 
   return (
