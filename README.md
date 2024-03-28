@@ -34,7 +34,7 @@ Task management app is a web application designed to add delete update the tasks
 
 ## Screenshots
 
-![Screenshot 1](./src/assets/home.png)
+![Screenshot 1](../src/assets/home.png)
 ![Screenshot 1](./src/assets/task.png)
 ![Screenshot 1](./src/assets/signup.png)
 ![Screenshot 1](./src/assets/login.png)
