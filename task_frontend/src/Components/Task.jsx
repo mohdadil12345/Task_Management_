@@ -8,8 +8,8 @@ const Task = () => {
   const dispatch = useDispatch();
 
   const tasks = useSelector((state) => state.task.tasks.data);
-
   const [filteredTasks, setFilteredTasks] = useState("");
+
 
   const [taskData, settaskData] = useState({
     title: "",
@@ -41,20 +41,17 @@ const Task = () => {
     dispatch(getTASKS());
   }, [taskData]);
 
-  const filterByCategory = (e) => {
-
-     setFilteredTasks( e.target.value)
-    
+  const filterByPriority = (e) => {
+    setFilteredTasks(e.target.value);
   };
 
   return (
     <>
-      <div className="flex justify-content-center align-items-center">
-    
+     <div className="flex justify-content-center align-items-center">
         <select
-          onChange={(e) => filterByCategory(e)}
+          onChange={filterByPriority}
           className="select_tag priority mt-2 p-2 border border-gray-300 rounded"
-          name="category"
+          name="priority"
         >
           <option value="">Select By Priority</option>
           <option value="urgent">Urgent</option>
@@ -62,6 +59,7 @@ const Task = () => {
           <option value="low">Low</option>
         </select>
       </div>
+
 
       <div className="main-container-todo ">
         <div className=" cont w-[25%] todo-container max-w-lg p-5 rounded-lg shadow-md">

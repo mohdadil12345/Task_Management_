@@ -7,6 +7,14 @@ import { useEffect } from "react";
 function TaskItem({ data, filteredTasks }) {
   const dispatch = useDispatch();
 
+
+  const [editMode, setEditMode] = useState(null);
+  const [editedTask, setEditedTask] = useState({
+    title: "",
+    description: "",
+    priority: "",
+  });
+
   const tasks = useSelector((state) => state.task.tasks.data);
 
 
@@ -44,20 +52,67 @@ function TaskItem({ data, filteredTasks }) {
     }, 2000);
   };
 
+
+
+  const handleEditChange = (e) => {
+    const { name, value } = e.target;
+    setEditedTask({
+      ...editedTask,
+      [name]: value,
+    });
+  };
+
+  const submitEdit = (id) => {
+    dispatch(updateTask(id, editedTask));
+    setEditMode(null);
+    setTimeout(() => {
+      window.location.reload();
+    }, 2000);
+    toast.success("Task edited successfully");
+  };
+
+  const toggleEditMode = (id) => {
+    setEditMode(id);
+    const taskToEdit = data.find((task) => task._id === id);
+    setEditedTask({
+      title: taskToEdit.title,
+      description: taskToEdit.description,
+      priority: taskToEdit.priority,
+      status: taskToEdit.status,
+    });
+  };
+
   return (
     <div className=" todoContainer">
+
       {tasks?.map((task, index) => (
         <>
+
+
         {filteredTasks == task.priority &&     <div key={index} className=" todoItems">
           <div className="task-list-data">
         
               <strong>Title : </strong>
-              <h3 className="task-text">{task.title}</h3>
-       
+              {!editMode || editMode !== task._id ? (
+                <h3 className="task-text">{task.title}</h3>
+              ) : (
+                <input
+                  type="text"
+                  name="title"
+                  value={editedTask.title}
+                  onChange={handleEditChange}
+                />
+              )}
               <strong>Description : </strong>
-              <p className="description">{task.description}</p>
-          
-          
+              {!editMode || editMode !== task._id ? (
+                <p className="description">{task.description}</p>
+              ) : (
+                <textarea
+                  name="description"
+                  value={editedTask.description}
+                  onChange={handleEditChange}
+                />
+              )}
               <strong>Priority : </strong>
             
               <select
@@ -92,27 +147,46 @@ function TaskItem({ data, filteredTasks }) {
                 <option value="Pending">Pending</option>
               </select>
      
-              <button
-                onClick={() => handle_Delete(task._id)}
-                className="del_btn"
-                
-              
-              >
-                DELETE
-              </button>
-              <button className="edit_btn">
-             
-                EDIT
-              </button>
+              {!editMode || editMode !== task._id ? (
+                <>
+                  <button className="del_btn" onClick={() => handle_Delete(task._id)}>DELEffTE</button>
+                  <button className="edit_btn" onClick={() => toggleEditMode(task._id)}>EDIT</button>
+                </>
+              ) : (
+                <>
+                  <button className="edit_btn"  onClick={() => submitEdit(task._id)}>SAVE</button>
+                  <button className="edit_btn"  onClick={() => setEditMode(null)}>CANCEL</button>
+                </>
+              )}
           </div>
         </div>}
 
+
+
 {filteredTasks  == ""  &&   <div key={index} className=" todoItems">
           <div className="task-list-data">
-              <strong>Name : </strong>
-              <h3 className="task-text">{task.title}</h3>
+                 
+          <strong>Title : </strong>
+              {!editMode || editMode !== task._id ? (
+                <h3 className="task-text">{task.title}</h3>
+              ) : (
+                <input
+                  type="text"
+                  name="title"
+                  value={editedTask.title}
+                  onChange={handleEditChange}
+                />
+              )}
               <strong>Description : </strong>
-              <p className="description">{task.description}</p>
+              {!editMode || editMode !== task._id ? (
+                <p className="description">{task.description}</p>
+              ) : (
+                <textarea
+                  name="description"
+                  value={editedTask.description}
+                  onChange={handleEditChange}
+                />
+              )}
               <strong>Priority : </strong>
               <select
                 className="priority p-2 border border-gray-300 rounded"
@@ -144,20 +218,17 @@ function TaskItem({ data, filteredTasks }) {
                 <option value="Completed">Completed</option>
                 <option value="Pending">Pending</option>
               </select>
-       
-              <button
-                onClick={() => handle_Delete(task._id)}
-                className="del_btn"
-                
-           
-              >
-                DELETE
-              </button>
-              <button className="edit_btn">
-              
-                EDIT
-              </button>
-
+              {!editMode || editMode !== task._id ? (
+                <>
+                  <button className="del_btn" onClick={() => handle_Delete(task._id)}>DELETE</button>
+                  <button className="edit_btn" onClick={() => toggleEditMode(task._id)}>EDIT</button>
+                </>
+              ) : (
+                <>
+                  <button className="edit_btn"  onClick={() => submitEdit(task._id)}>SAVE</button>
+                  <button className="del_btn"  onClick={() => setEditMode(null)}>CANCEL</button>
+                </>
+              )}
           </div>
         </div>}
         
