@@ -3,6 +3,8 @@
 
  This task management app  allows us to add tasks and able to see their own tasks.
 
+ video : https://drive.google.com/file/d/1s4YDIe1kms81JGhPc0mfVv6iLVIcHiGk/view?usp=drive_link
+
 ## Table of Contents
 
 - [About](#about)
@@ -33,11 +35,12 @@ Task management app is a web application designed to add delete update the tasks
 
 
 ## Screenshots
+![Screenshot 1](./task_frontend/src/assets/home.png)
+![Screenshot 1](./task_frontend/src/assets/task.png)
+![Screenshot 1](./task_frontend/src/assets/login.png)
+![Screenshot 1](./task_frontend/src/assets/signup.png)
 
-![Screenshot 1](./src/assets/home.png)
-![Screenshot 1](./src/assets/task.png)
-![Screenshot 1](./src/assets/signup.png)
-![Screenshot 1](./src/assets/login.png)
+
 
 ## Deployment
 
