@@ -50,14 +50,10 @@ const Task = () => {
   return (
     <>
       <div className="flex justify-content-center align-items-center">
-        <input
-          type="text"
-          placeholder="Filter By Status"
-          className="searc_input priority p-2 border border-gray-300 rounded"
-        />
+    
         <select
           onChange={(e) => filterByCategory(e)}
-          className="select_tag priority p-2 border border-gray-300 rounded"
+          className="select_tag priority mt-2 p-2 border border-gray-300 rounded"
           name="category"
         >
           <option value="">Select By Priority</option>

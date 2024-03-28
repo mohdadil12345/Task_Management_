@@ -48,7 +48,7 @@ function TaskItem({ data, filteredTasks }) {
         {filteredTasks == task.priority &&     <div key={index} className=" todoItems">
           <div className="task-list-data">
         
-              <strong>Name : </strong>
+              <strong>Title : </strong>
               <h3 className="task-text">{task.title}</h3>
        
               <strong>Description : </strong>
